@@ -1,9 +1,8 @@
 import 'dart:collection';
 
 import 'package:dart_data_structures/exceptions/trees/tree_node_exceptions.dart';
+import 'package:dart_data_structures/typedefs/tree_typedefs.dart';
 import 'package:flutter/material.dart';
-
-typedef void NodeVisitCallback(TreeNode node);
 
 enum TraversalType {
   DepthFirst,
@@ -29,14 +28,14 @@ class TreeNode<ValueType> {
     children.add(node);
   }
 
-  void depthFirstTraversal(NodeVisitCallback visit) {
+  void depthFirstTraversal(NodeVisitCallback<TreeNode> visit) {
     visit(this);
     children?.forEach((node) {
       node.depthFirstTraversal(visit);
     });
   }
 
-  void levelOrderTraversal(NodeVisitCallback visit) {
+  void levelOrderTraversal(NodeVisitCallback<TreeNode> visit) {
     visit(this);
 
     var queue = Queue<TreeNode<ValueType>>();
@@ -54,12 +53,7 @@ class TreeNode<ValueType> {
           queue.add(node);
         });
 
-        try {
-          curNode = queue.removeFirst();
-        } catch (ex) {
-          curNode = null;
-          print(ex.toString());
-        }
+        curNode = queue.isNotEmpty ? queue.removeFirst() : null;
       }
     }
   }
