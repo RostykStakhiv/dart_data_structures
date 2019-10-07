@@ -6,7 +6,19 @@ class BinaryNode<ValueType> {
   BinaryNode<ValueType> left;
   BinaryNode<ValueType> right;
 
-  BinaryNode({@required this.value});
+  BinaryNode({@required this.value, this.left, this.right});
+
+  BinaryNode<ValueType> get minValueNode {
+    BinaryNode curMinNode = this;
+    BinaryNode curNode = right;
+
+    while(curNode != null) {
+      curMinNode = curNode;
+      curNode = curNode.left;
+    }
+
+    return curMinNode;
+  }
 
   void inOrderTraversal(NodeVisitCallback<BinaryNode<ValueType>> visit) {
     left?.inOrderTraversal(visit);
