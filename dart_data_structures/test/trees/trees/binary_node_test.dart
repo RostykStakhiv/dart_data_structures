@@ -1,4 +1,4 @@
-import 'package:dart_data_structures/trees/binary_node.dart';
+import 'package:dart_data_structures/trees/nodes/binary_node.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

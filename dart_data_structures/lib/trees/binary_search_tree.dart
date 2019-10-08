@@ -1,5 +1,5 @@
 import 'package:dart_data_structures/exceptions/trees/tree_node_exceptions.dart';
-import 'package:dart_data_structures/trees/binary_node.dart';
+import 'package:dart_data_structures/trees/nodes/binary_node.dart';
 import 'package:flutter/cupertino.dart';
 
 class BinarySearchTree<ValueType extends Comparable> {

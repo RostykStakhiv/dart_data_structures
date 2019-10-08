@@ -1,5 +1,5 @@
 import 'package:dart_data_structures/exceptions/trees/tree_node_exceptions.dart';
-import 'package:dart_data_structures/trees/tree_node.dart';
+import 'package:dart_data_structures/trees/nodes/tree_node.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:uuid/uuid.dart';
 
