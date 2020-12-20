@@ -1,0 +1,1 @@
+typedef void NodeVisitCallback<NodeType>(NodeType node);
