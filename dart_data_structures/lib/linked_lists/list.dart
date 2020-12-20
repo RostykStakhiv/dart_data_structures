@@ -15,4 +15,5 @@ abstract class List<T> {
   T removeAt(int index);
 
   void iterate(ListIteratorCallback<T> iteratorCallback);
+  T peek();
 }

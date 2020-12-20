@@ -43,7 +43,7 @@ class DoublyLinkedList<T> extends List<T> {
       return;
     }
 
-    if(foundNode == tail) {
+    if (foundNode == tail) {
       append(value);
       return;
     }
@@ -74,7 +74,7 @@ class DoublyLinkedList<T> extends List<T> {
 
   @override
   T removeFirst() {
-    if(isEmpty()) {
+    if (isEmpty()) {
       return null;
     }
 
@@ -87,7 +87,7 @@ class DoublyLinkedList<T> extends List<T> {
 
   @override
   T removeLast() {
-    if(isEmpty()) {
+    if (isEmpty()) {
       return null;
     }
 
@@ -111,9 +111,12 @@ class DoublyLinkedList<T> extends List<T> {
   @override
   void iterate(ListIteratorCallback<T> iteratorCallback) {
     var curNode = head;
-    while(curNode != null) {
+    while (curNode != null) {
       iteratorCallback(curNode.value);
       curNode = curNode.next;
     }
   }
+
+  @override
+  T peek() => tail?.value;
 }

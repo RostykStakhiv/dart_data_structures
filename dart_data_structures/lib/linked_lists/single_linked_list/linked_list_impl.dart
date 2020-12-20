@@ -138,4 +138,7 @@ class LinkedList<T> implements List<T> {
       curNode = curNode.next;
     }
   }
+
+  @override
+  T peek() => tail?.value;
 }
