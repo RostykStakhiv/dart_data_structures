@@ -5,4 +5,6 @@ abstract class Queue<T> {
   void enqueue(T element);
   T dequeue();
   T peek();
+
+  List<T> get elements;
 }

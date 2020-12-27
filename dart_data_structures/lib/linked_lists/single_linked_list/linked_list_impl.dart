@@ -140,5 +140,5 @@ class LinkedList<T> implements List<T> {
   }
 
   @override
-  T peek() => tail?.value;
+  T peek() => head?.value;
 }

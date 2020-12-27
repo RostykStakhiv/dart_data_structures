@@ -184,20 +184,16 @@ void main() {
     expect(iteratedElements, elements);
   });
 
-  test('peek() method returns last element', () {
+  test('peek() method returns first element', () {
     final list = LinkedList<int>();
     const elements = [1, 2, 3, 4, 5];
 
     expect(list.peek(), isNull);
 
-    final peeks = <int>[];
-
     for (final el in elements) {
       list.append(el);
-      peeks.add(list.peek());
+      expect(list.peek(), elements.first);
     }
-
-    expect(peeks, elements);
   });
 
   //TODO(rostyslav.stakhiv): Add tests for index-based methods
