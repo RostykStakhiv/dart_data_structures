@@ -1,4 +1,4 @@
-part of '../queue.dart';
+part of 'queue.dart';
 
 class LinkedListQueue<T> implements Queue<T> {
   LinkedListQueue();
