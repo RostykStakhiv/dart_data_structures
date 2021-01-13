@@ -22,7 +22,6 @@ class DoubleStackQueue<T> implements Queue<T> {
     return readStack.last;
   }
 
-  @override
   List<T> get elements {
     final queueElements = readStack.reversed.toList();
     queueElements.addAll(writeStack);

@@ -20,7 +20,6 @@ class CircularBufferQueue<T> implements Queue<T> {
   @override
   T peek() => _circularBuffer.peek();
 
-  @override
   List<T> get elements {
     final queueElements = <T>[];
     _circularBuffer.iterate((value) {

@@ -19,7 +19,6 @@ class LinkedListQueue<T> implements Queue<T> {
   @override
   T peek() => list.peek();
 
-  @override
   List<T> get elements {
     final queueElements = <T>[];
     list.iterate((value) {

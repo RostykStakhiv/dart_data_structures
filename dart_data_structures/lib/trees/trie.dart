@@ -1,7 +1,11 @@
 import 'package:dart_data_structures/trees/nodes/trie_node.dart';
 
 class Trie<ValueType extends Iterable> {
-  final TrieNode _root = TrieNode(key: null, parentNode: null);
+  final TrieNode _root = TrieNode(
+    key: null,
+    parentNode: null,
+    isTerminating: false,
+  );
 
   bool get isEmpty => _root.children.isEmpty;
 
@@ -53,12 +57,11 @@ class Trie<ValueType extends Iterable> {
     curNode.isTerminating = !curNode.isTerminating;
 
     TrieNode parent = curNode.parentNode;
-    while (parent != null &&
-        curNode.children.isEmpty &&
-        !curNode.isTerminating) {
-          parent.children.remove(curNode.key);
-          curNode = parent;
-          parent = parent.parentNode;
-        }
+    while (
+        parent != null && curNode.children.isEmpty && !curNode.isTerminating) {
+      parent.children.remove(curNode.key);
+      curNode = parent;
+      parent = parent.parentNode;
+    }
   }
 }

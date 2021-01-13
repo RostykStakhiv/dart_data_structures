@@ -8,7 +8,7 @@ typedef HeapSortFunc<ValueType extends Comparable> = bool Function(
 class Heap<ValueType extends Comparable> {
   Heap._sortFunc(this._sortFunc, {this.elements}) {
     if (elements == null) {
-      elements = List<ValueType>.empty();
+      elements = List<ValueType>.empty(growable: true);
     }
 
     for (int i = length ~/ 2; i >= 0; --i) {
