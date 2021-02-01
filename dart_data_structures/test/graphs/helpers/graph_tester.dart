@@ -13,7 +13,7 @@ class GraphTester {
     expect(_graph.vertices.length, 1);
   }
 
-  void performTests() {
+  void runTests() {
     setUp(() {
       _graph = graphConstructorCallback();
     });

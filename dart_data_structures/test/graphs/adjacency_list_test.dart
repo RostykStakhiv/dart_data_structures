@@ -10,5 +10,5 @@ void main() {
     return AdjacencyList<int>();
   });
 
-  graphTester.performTests();
+  graphTester.runTests();
 }
