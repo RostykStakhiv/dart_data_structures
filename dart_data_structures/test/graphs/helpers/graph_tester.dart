@@ -1,17 +1,16 @@
+import 'dart:math';
+
 import 'package:dart_data_structures/graphs/graphs.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 class GraphTester {
-  GraphTester({@required this.graphConstructorCallback});
+  GraphTester({
+    @required this.graphConstructorCallback,
+  });
 
   Graph _graph;
   final Graph Function() graphConstructorCallback;
-
-  void testCreateVertexOnEmptyGraph() {
-    _graph.createVertex(1);
-    expect(_graph.vertices.length, 1);
-  }
 
   void runTests() {
     setUp(() {
@@ -46,7 +45,10 @@ class GraphTester {
             THEN only 1 DIRECTED edge is created from SOURCE to DESTINATION''',
           () {
         _graph.addDirectedEdge(
-            source: sourceVertex, destination: destinationVertex);
+          source: sourceVertex,
+          destination: destinationVertex,
+          weight: _weight,
+        );
         final edgesFromSource = _graph.edgesFrom(source: sourceVertex);
 
         expect(edgesFromSource.length, 1,
@@ -54,7 +56,8 @@ class GraphTester {
         expect(edgesFromSource.first.destination, destinationVertex,
             reason: 'Directed edge has been created with wrong destination');
 
-        final edgesFromDestination = _graph.edgesFrom(source: destinationVertex);
+        final edgesFromDestination =
+            _graph.edgesFrom(source: destinationVertex);
         expect(edgesFromDestination.length, 0,
             reason:
                 'Directed edge has been created from destination to source by mistake. Possibly undirected edge has been created instead of a directed one.');
@@ -65,7 +68,10 @@ class GraphTester {
             THEN 1 DIRECTED edge gets created from SOURCE to DESTINATION and 1 directed edge gets created from DESTINATION to SOURCE''',
           () {
         _graph.addUndirectedEdge(
-            source: sourceVertex, destination: destinationVertex);
+          source: sourceVertex,
+          destination: destinationVertex,
+          weight: _weight,
+        );
         final edgesFromSource = _graph.edgesFrom(source: sourceVertex);
 
         expect(edgesFromSource.length, 1,
@@ -73,7 +79,8 @@ class GraphTester {
         expect(edgesFromSource.first.destination, destinationVertex,
             reason: 'Directed edge has been created with wrong DESTINATION');
 
-        final edgesFromDestination = _graph.edgesFrom(source: destinationVertex);
+        final edgesFromDestination =
+            _graph.edgesFrom(source: destinationVertex);
         expect(edgesFromDestination.length, 1,
             reason: 'Directed edge from DESTINATION has not been created');
         expect(edgesFromDestination.first.destination, sourceVertex,
@@ -90,9 +97,14 @@ class GraphTester {
             edgeType: EdgeType.directed,
             source: sourceVertex,
             destination: destinationVertex,
+            weight: _weight,
           );
         });
       });
     });
   }
+
+  double get _weight => (_graph is UnweightedAdjacencyMatrix)
+      ? null
+      : Random().nextInt(100).toDouble();
 }

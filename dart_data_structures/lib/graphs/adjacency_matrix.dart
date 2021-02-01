@@ -1,19 +1,22 @@
 part of 'graphs.dart';
 
 class AdjacencyMatrix<T> with Graph<T> {
-  final _adjecencyMatrix = List<List<Edge<T>>>();
+  final _weights = List<List<double>>();
   final _vertices = List<Vertex<T>>();
+
+  static const double _defaultWeight = 0;
 
   @override
   Vertex<T> createVertex(T value) {
-    _vertices.add(Vertex<T>(index: _adjecencyMatrix.length, value: value));
+    _vertices.add(Vertex<T>(index: _weights.length, value: value));
 
-    for (final edges in _adjecencyMatrix) {
+    for (final edges in _weights) {
       edges.add(null);
     }
 
-    final weightsForNewVertix = List<Edge<T>>.filled(_vertices.length, null, growable: true);
-    _adjecencyMatrix.add(weightsForNewVertix);
+    final weightsForNewVertix =
+        List<double>.filled(_vertices.length, null, growable: true);
+    _weights.add(weightsForNewVertix);
 
     return _vertices.last;
   }
@@ -21,21 +24,28 @@ class AdjacencyMatrix<T> with Graph<T> {
   @override
   void addDirectedEdge(
       {Vertex<T> source, Vertex<T> destination, double weight}) {
-    _adjecencyMatrix[source.index][destination.index] =
-        Edge<T>(source: source, destination: destination, weight: weight);
+    _weights[source.index][destination.index] = weight;
   }
 
   @override
   List<Edge<T>> edgesFrom({Vertex<T> source}) {
-    return _adjecencyMatrix[source.index]
-        .where((edge) => edge != null)
-        .toList();
+    final edges = List<Edge<T>>();
+    for (var column = 0; column < _vertices.length; ++column) {
+      final weight = _weights[source.index][column];
+
+      if (weight != null) {
+        edges.add(Edge<T>(
+            source: source, destination: _vertices[column], weight: weight));
+      }
+    }
+
+    return edges;
   }
 
   @override
   double weightFromSourceToDestination(
       Vertex<T> source, Vertex<T> destination) {
-    return _adjecencyMatrix[source.index][destination.index]?.weight;
+    return _weights[source.index][destination.index];
   }
 
   @override

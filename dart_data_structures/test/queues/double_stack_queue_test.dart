@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   DoubleStackQueue<int> queue;
 
-  setUpAll(() {
+  setUp(() {
     queue = DoubleStackQueue<int>();
   });
   group('Enqueue tests', () {
