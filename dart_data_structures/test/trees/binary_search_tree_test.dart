@@ -2,10 +2,11 @@ import 'package:dart_data_structures/trees/binary_search_tree.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  BinarySearchTree<int> bst = BinarySearchTree();
+  BinarySearchTree<int> bst;
   const List<int> containedValues = [3, 4, 5, 1, 0, 2];
 
   setUp(() {
+    bst = BinarySearchTree();
     for (final val in containedValues) {
       bst.insert(val);
     }

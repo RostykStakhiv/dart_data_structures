@@ -1,6 +1,6 @@
 part of 'graphs.dart';
 
-class AdjacencyList<T> extends Graph<T> with GraphEdgeAdder<T> {
+class AdjacencyList<T> with Graph<T> {
   final _adjacencies = Map<Vertex<T>, List<Edge<T>>>();
 
   @override
